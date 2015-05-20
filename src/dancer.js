@@ -22,7 +22,6 @@ Dancer.prototype.step = function(){
     setTimeout(function () {
       context.step();
     }, this.timeBetweenSteps);
-    console.log('one');
   };
 
 Dancer.prototype.setPosition = function(top, left){
