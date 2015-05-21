@@ -1,6 +1,8 @@
 $(document).ready(function(){
+  window.ground = [];
+  window.fish = [];
+  window.sharks = [];
   window.dancers = [];
-
   $(".addDancerButton").on("click", function(event){
     /* This function sets up the click handlers for the create-dancer
      * buttons on index.html. You should only need to make one small change to it.
@@ -30,26 +32,52 @@ $(document).ready(function(){
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
+    if ( dancer.type === 'dog' || dancer.type === 'crab') {
+      ground.push(dancer);
+    }
+    if (dancer.type === 'fish') {
+      fish.push(dancer);
+    }
+    if (dancer.type === 'shark') {
+      sharks.push(dancer);
+    }
     dancers.push(dancer);
   });
 
   $(".lineUpButton").on("click", function(event){
-    var height = $("body").height()/2;
+    var height = $("body").height()*3/4;
     // to adjust alignment by starting from center
-    var width = $("body").width()/(dancers.length+1);
+    var width = $("body").width()/(ground.length+1);
     //var length = $("body").width()*3/4;
-    // the more dancers, the smaller spacing becomes
-    //var spacing = (length - width)/dancers.length;
+    // the more ground animals, the smaller spacing becomes
+    //var spacing = (length - width)/ground.length;
 
-    for (var i = 0; i < dancers.length; i++){
+    for (var i = 0; i < ground.length; i++){
       //each dancer is a object with a $node property
-      dancers[i].$node.stop(true, true);  // stops animation to prevent misalignments caused by dogs "jumping"
-      dancers[i].lineUp(height,width*(i+1)-50);
+      ground[i].$node.stop(true, true);  // stops animation to prevent misalignments caused by ground animals "jumping"
+      ground[i].lineUp(height,width*(i+1)-50);
+    }
 
+    var fishHeight = $("body").height()*1/5;
+    var fishWidth = $("body").width()/(fish.length+1);
+
+    for (var i = 0; i < fish.length; i++){
+      //each dancer is a object with a $node property
+      fish[i].$node.stop(true, true);  // stops animation to prevent misalignments caused by fish "swimming"
+      fish[i].lineUp(fishHeight,fishWidth*(i+1)-50);
+    }
+
+    var sharksWidth = $("body").width()/(sharks.length+1);
+
+    for (i = 0; i < sharks.length; i++) {
+      sharks[i].$node.stop(true, true);  // stops animation to prevent misalignments caused by sharks "swimming"
+      sharks[i].lineUp(fishHeight*2,sharksWidth*(i+1)-50);
     }
   });
 
-  $(".danceNearButton").on("click", function(event){
+
+  // dance near currently broken
+  /*$(".danceNearButton").on("click", function(event){
     // pythag theorem to get distance (top^2 - left^2 gets you the distance^2)
     var distance = function(dancer1, dancer2){  //for our purposes, distance^2 conveys distance
       return Math.pow(dancer1.top - dancer2.top, 2) + Math.pow(dancer1.left-dancer2.left, 2);
@@ -74,13 +102,13 @@ $(document).ready(function(){
       }
 
     }
-  });
+  });*/
 
-  $('body').on('mouseover', 'img', function(event){
+  $('body').on('mouseover', '.DogDancer', function(event){
     $(this).animate({top: "-=150"}, 200);
   });
 
-  $('body').on('mouseleave', 'img', function(event){
+  $('body').on('mouseleave', '.DogDancer', function(event){
     $(this).animate({top: "+=150"}, 200);
   })
 

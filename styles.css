@@ -42,7 +42,13 @@ a, .title {
 
 }
 
-.DogDancer {
+img {
+  height: 100px;
+  width: auto;
   position:absolute;
   /*background:url('dog.png');*/
+}
+
+.rotateY {
+  transform: rotateY(180deg);
 }

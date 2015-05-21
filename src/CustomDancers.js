@@ -66,6 +66,7 @@ var DogDancer = function(top, left, timeBetweenSteps){
   //this.step();
   this.$node = $('<img src="dog.png" class="DogDancer">');
   this.setPosition(this.top, this.left);
+  this.type = 'dog';
 
 };
 
@@ -86,6 +87,36 @@ DogDancer.prototype.step = function(){
   this.$node.animate({top: "+=20"}, 100);
 };
 
+var CrabDancer = function(top, left, timeBetweenSteps){
+  Dancer.call(this, top, left, timeBetweenSteps);
+
+  // we plan to overwrite the step function below, but we still want the superclass step behavior to work,
+  // so we must keep a copy of the old version of this function
+
+  //this.step();
+  this.$node = $('<img src="crab.png" class="CrabDancer">');
+  this.setPosition(this.top, this.left);
+  this.type = 'crab';
+};
+
+CrabDancer.prototype = Object.create(Dancer.prototype);
+CrabDancer.prototype.constructor = CrabDancer;
+CrabDancer.prototype.oldStep = function() {
+  Dancer.prototype.step.call(this);
+};
+
+
+CrabDancer.prototype.step = function(){
+  // call the old version of step at the beginning of any call to this new version of step
+  this.oldStep();
+  // toggle() is a jQuery method to show/hide the <span> tag.
+  // See http://api.jquery.com/category/effects/ for this and
+  // other effects you can use on a jQuery-wrapped html tag.
+  this.$node.animate({left: "-=20"}, 100);
+  this.$node.animate({left: "+=20"}, 100);
+
+};
+
 var SharkDancer = function(top, left, timeBetweenSteps){
   Dancer.call(this, top, left, timeBetweenSteps);
 
@@ -93,8 +124,9 @@ var SharkDancer = function(top, left, timeBetweenSteps){
   // so we must keep a copy of the old version of this function
 
   //this.step();
-  this.$node = $('<img src="dog.png" class="SharkDancer">');
+  this.$node = $('<img src="shark.png" class="SharkDancer">');
   this.setPosition(this.top, this.left);
+  this.type = 'shark';
 
 };
 
@@ -111,8 +143,43 @@ SharkDancer.prototype.step = function(){
   // toggle() is a jQuery method to show/hide the <span> tag.
   // See http://api.jquery.com/category/effects/ for this and
   // other effects you can use on a jQuery-wrapped html tag.
-  this.$node.animate({left: "-=100"}, 1000);
-  this.$node.animate({left: "+=100"}, 1000);
+  this.$node.animate({left: "-=200"}, 1000);
+  this.$node.animate({left: "+=200"}, 1000);
 };
+
+var FishDancer = function(top, left, timeBetweenSteps){
+  Dancer.call(this, top, left, timeBetweenSteps);
+
+  // we plan to overwrite the step function below, but we still want the superclass step behavior to work,
+  // so we must keep a copy of the old version of this function
+
+  //this.step();
+  this.$node = $('<img src="fish.png" class="FishDancer">');
+  this.setPosition(this.top, this.left);
+  this.type = 'fish';
+
+};
+
+FishDancer.prototype = Object.create(Dancer.prototype);
+FishDancer.prototype.constructor = FishDancer;
+FishDancer.prototype.oldStep = function() {
+  Dancer.prototype.step.call(this);
+};
+
+
+FishDancer.prototype.step = function(){
+  // call the old version of step at the beginning of any call to this new version of step
+  this.oldStep();
+  // toggle() is a jQuery method to show/hide the <span> tag.
+  // See http://api.jquery.com/category/effects/ for this and
+  // other effects you can use on a jQuery-wrapped html tag.
+  this.$node.animate({left: "-=100"}, 2000);
+  this.$node.addClass('rotateY');
+  this.$node.animate({left: "+=100"}, 2000);
+  this.$node.removeClass('rotateY');
+};
+
+
+
 
 
