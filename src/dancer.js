@@ -37,7 +37,10 @@ Dancer.prototype.setPosition = function(top, left){
   };
 
 Dancer.prototype.lineUp = function(height, width){
-  this.setPosition(height, width);
+  this.$node.animate({top: height, left: width}, 1000);
+  //sets new top and left values following the alignment
+  this.top = height;
+  this.left = width;
 }
 
 

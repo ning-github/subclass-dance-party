@@ -17,7 +17,7 @@ a, .title {
   border-radius: 5px;
 }
 
-.title, .addDancerButton, .lineUpButton{
+.title, a{
   padding:5px 12px;
   float:right;
 }
