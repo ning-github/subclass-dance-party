@@ -23,8 +23,10 @@ $(document).ready(function(){
     // make a dancer with a random position
 
     var dancer = new dancerMakerFunction(
-      $("body").height() * Math.random(),
-      $("body").width() * Math.random(),
+      // to ensure minimum 5%, maximum 95% (height placement of random dancer)
+      (($("body").height() * Math.random()) * .75 + ($("body").height() *.1)),
+      // to ensure minimum 5%, maximum 95% (width placement of random dancer)
+      (($("body").width() * Math.random()) * .8 + ($("body").width() *.05)),
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
@@ -39,13 +41,24 @@ $(document).ready(function(){
     var spacing = (length - width)/dancers.length;
 
     for (var i = 0; i < dancers.length; i++){
+      //each dancer is a object with a $node property
+      dancers[i].$node.stop(true, true);  // stops animation to prevent misalignments caused by dogs "jumping"
       dancers[i].lineUp(height,width + spacing*i);
     }
   });
 
-  $('img').on('mouseover', function(event){
+  $(".danceNearButton").on("click", function(event){
 
+  });
+
+  $('body').on('mouseover', 'img', function(event){
+    $(this).animate({top: "-=150"}, 200);
+  });
+
+  $('body').on('mouseleave', 'img', function(event){
+    $(this).animate({top: "+=150"}, 200);
   })
+
 
 
 });

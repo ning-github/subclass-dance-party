@@ -2,8 +2,10 @@ body, html{
   height:100%;
 }
 body{
+
   margin: 0px;
-  background-color:#444;
+  background: url('background.jpg') #444 no-repeat;
+  background-size: 100%;
   font-size: 18px;
 }
 body, a:link, a:visited, a:active{
