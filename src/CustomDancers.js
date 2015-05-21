@@ -64,7 +64,11 @@ var DogDancer = function(top, left, timeBetweenSteps){
   // so we must keep a copy of the old version of this function
 
   //this.step();
-  this.$node = $('<img src="dog.png" class="DogDancer">');
+  if (!this.ghost) {
+    this.$node = $('<img src="dog.png" class="DogDancer">');
+  } else {
+    this.$node = $('<img src="ghost.png" class="GhostDancer">');
+  }
   this.setPosition(this.top, this.left);
   this.type = 'dog';
 
@@ -94,7 +98,11 @@ var CrabDancer = function(top, left, timeBetweenSteps){
   // so we must keep a copy of the old version of this function
 
   //this.step();
-  this.$node = $('<img src="crab.png" class="CrabDancer">');
+  if(!this.ghost){
+    this.$node = $('<img src="crab.png" class="CrabDancer">');
+  } else {
+    this.$node = $('<img src="ghost.png" class="GhostDancer">');
+  }
   this.setPosition(this.top, this.left);
   this.type = 'crab';
 };
@@ -124,7 +132,11 @@ var SharkDancer = function(top, left, timeBetweenSteps){
   // so we must keep a copy of the old version of this function
 
   //this.step();
-  this.$node = $('<img src="shark.png" class="SharkDancer">');
+  if (!this.ghost){
+    this.$node = $('<img src="shark.png" class="SharkDancer">');
+  } else {
+    this.$node = $('<img src="ghost.png" class="GhostDancer">');
+  }
   this.setPosition(this.top, this.left);
   this.type = 'shark';
 
@@ -143,8 +155,8 @@ SharkDancer.prototype.step = function(){
   // toggle() is a jQuery method to show/hide the <span> tag.
   // See http://api.jquery.com/category/effects/ for this and
   // other effects you can use on a jQuery-wrapped html tag.
-  this.$node.animate({left: "-=200"}, 1000);
-  this.$node.animate({left: "+=200"}, 1000);
+  this.$node.animate({left: "-=20"}, 100);
+  this.$node.animate({left: "+=20"}, 100);
 };
 
 var FishDancer = function(top, left, timeBetweenSteps){
@@ -154,7 +166,11 @@ var FishDancer = function(top, left, timeBetweenSteps){
   // so we must keep a copy of the old version of this function
 
   //this.step();
-  this.$node = $('<img src="fish.png" class="FishDancer">');
+  if (!this.ghost){
+    this.$node = $('<img src="fish.png" class="FishDancer">');
+  } else {
+    this.$node = $('<img src="ghost.png" class="GhostDancer">');
+  }
   this.setPosition(this.top, this.left);
   this.type = 'fish';
 
@@ -173,10 +189,8 @@ FishDancer.prototype.step = function(){
   // toggle() is a jQuery method to show/hide the <span> tag.
   // See http://api.jquery.com/category/effects/ for this and
   // other effects you can use on a jQuery-wrapped html tag.
-  this.$node.animate({left: "-=100"}, 2000);
-  this.$node.addClass('rotateY');
-  this.$node.animate({left: "+=100"}, 2000);
-  this.$node.removeClass('rotateY');
+  this.$node.animate({left: "-=20"}, 100);
+  this.$node.animate({left: "+=20"}, 100);
 };
 
 

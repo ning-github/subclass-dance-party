@@ -1,5 +1,24 @@
+var DanceFloor = function(){
+
+};
+
+DanceFloor.prototype.customStep = function () {
+  this.oldStep();
+
+  this.$node.addClass('rotateY');
+  var context = this;
+
+  setTimeout(function() {
+    context.$node.removeClass('rotateY');
+  }, 2000);
+}
+
+
 // Creates and returns a new dancer object that can step
 var Dancer = function(top, left, timeBetweenSteps){
+  // inherit dance floor
+  DanceFloor.call(this);
+
   this.top = top;
   this.left = left;
   this.timeBetweenSteps = timeBetweenSteps;
@@ -12,9 +31,11 @@ var Dancer = function(top, left, timeBetweenSteps){
   this.setPosition(this.top, this.left);
 
 
-
-
 };
+Dancer.prototype = Object.create(DanceFloor.prototype);
+Dancer.prototype.constructor = Dancer;
+
+Dancer.prototype.ghost = false;
 
 Dancer.prototype.step = function(){
     // the basic dancer doesn't do anything interesting at all on each step,
@@ -42,6 +63,7 @@ Dancer.prototype.lineUp = function(height, width){
   this.top = height;
   this.left = width;
 }
+
 
 
   // now that we have defined the dancer object, we can start setting up important parts of it by calling the methods we wrote

@@ -75,34 +75,70 @@ $(document).ready(function(){
     }
   });
 
+  $(".hauntedHouseButton").on("click", function(event) {
+    $("body").addClass("hauntedHouse");
+    DanceFloor.prototype.customStep = function () {
+      this.oldStep();
+      this.$node.stop(true, true);
+      this.$node.fadeOut();
+      this.$node.fadeIn();
+    }
+    //change dancer prototype to create a ghost
+    Dancer.prototype.ghost = true;
+
+    //change pre-existing dancers to ghosts
+    $('img').attr('src',"ghost.png");
+
+  });
+
+  $(".underWaterButton").on("click", function(event) {
+    $("body").removeClass("hauntedHouse");
+    DanceFloor.prototype.customStep = function () {
+      this.oldStep();
+
+      this.$node.addClass('rotateY');
+      var context = this;
+
+      setTimeout(function() {
+        context.$node.removeClass('rotateY');
+      }, 2000);
+    };
+    //change the dancer prototype to no longer create ghosts
+    Dancer.prototype.ghost = false;
+  })
+
+  $('.customDanceButton').on("click", function(event) {
+    for (var i = 0; i < dancers.length; i++) {
+      dancers[i].customStep();
+    }
+  })
 
   // dance near currently broken
-  /*$(".danceNearButton").on("click", function(event){
+  $(".danceNearButton").on("click", function(event){
     // pythag theorem to get distance (top^2 - left^2 gets you the distance^2)
     var distance = function(dancer1, dancer2){  //for our purposes, distance^2 conveys distance
       return Math.pow(dancer1.top - dancer2.top, 2) + Math.pow(dancer1.left-dancer2.left, 2);
     }
     for(var i = 0; i < dancers.length; i++){
-      for(var j = i; j < dancers.length; j++) {
+      for(var j = 0; j < dancers.length; j++) {
         if (dancers[i] !== dancers[j]) {
           // 25000 is an arbitrary comparison value we use to measure proximity
           if (distance(dancers[i],dancers[j]) < 25000) {
-            dancers[i].$node.stop(true, true);
-            dancers[j].$node.stop(true, true);
-            dancers[i].$node.animate({top: dancers[j].top, left: dancers[j].left}, 1000);
-            dancers[j].$node.animate({top: dancers[i].top, left: dancers[i].left}, 1000);
-            var top = dancers[j].top;
-            var left = dancers[j].top;
-            dancers[j].top = dancers[i].top;
-            dancers[j].left = dancers[i].left;
-            dancers[i].top = top;
-            dancers[i].left = left;
+            dancers[i].$node.stop(false, true);
+            dancers[i].$node.animate({width: 150, height: 150}, 1000);
+            dancers[i].$node.animate({width: 100, height: 100}, 1000);
+            // var top = dancers[j].top;
+            // var left = dancers[j].top;
+            // dancers[j].top = dancers[i].top;
+            // dancers[j].left = dancers[i].left;
+            // dancers[i].top = top;
+            // dancers[i].left = left;
           }
         }
       }
 
     }
-  });*/
+  });
 
   $('body').on('mouseover', '.DogDancer', function(event){
     $(this).animate({top: "-=150"}, 200);
@@ -110,7 +146,15 @@ $(document).ready(function(){
 
   $('body').on('mouseleave', '.DogDancer', function(event){
     $(this).animate({top: "+=150"}, 200);
-  })
+  });
+
+  // $('body').on('mouseover', '.DogDancer', function(event){
+  //   $(this).animate({top: "-=150"}, 200);
+  // });
+
+  // $('body').on('mouseleave', '.DogDancer', function(event){
+  //   $(this).animate({top: "+=150"}, 200);
+  // });
 
 
 
