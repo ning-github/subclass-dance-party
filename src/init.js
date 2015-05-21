@@ -28,6 +28,25 @@ $(document).ready(function(){
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
+    dancers.push(dancer);
   });
+
+  $(".lineUpButton").on("click", function(event){
+    var height = $("body").height()/2;
+    var width = $("body").width()/4;
+    var length = $("body").width()*3/4;
+    // the more dancers, the smaller spacing becomes
+    var spacing = (length - width)/dancers.length;
+
+    for (var i = 0; i < dancers.length; i++){
+      dancers[i].lineUp(height,width + spacing*i);
+    }
+  });
+
+  $('img').on('mouseover', function(event){
+
+  })
+
+
 });
 
