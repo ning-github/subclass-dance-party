@@ -2,23 +2,28 @@ body, html{
   height:100%;
 }
 body{
-
   margin: 0px;
   background: url('background.jpg') #444 no-repeat;
-  background-size: 100%;
+  background-size: 100% 100%;
   font-size: 18px;
 }
 body, a:link, a:visited, a:active{
-  color: lightblue;
+  color: #fff;
   text-decoration: none;
+
 }
 a, .title {
   border: 1px solid black;
   border-radius: 5px;
+  background-color:#004080;
+}
+a:hover {
+  background-color: lightblue;
+  color: #004080;
 }
 
 .title, a{
-  padding:5px 12px;
+  padding:4px 12px;
   float:right;
 }
 .topbar{
@@ -35,28 +40,41 @@ a, .title {
   position:absolute;
 }
 
-.SquareDancer {
-  border: 10px solid blue;
-  border-radius:2px;
-  position:absolute;
-
-}
-
 img {
   height: 100px;
   width: auto;
   position:absolute;
 }
 .rotateY {
-  -webkit-transition: 2s;
-  -moz-transition: 2s;
-  -o-transition: 2s;
   transition: 2s;
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
   transform: rotate(360deg);
+}
+
+.flip {
+  transition: 2s;
+  transform: rotateY(360deg);
+}
+
+#circle {
+  position: absolute;
+  width: 30%;
+  height: 50%;
+  top: 25%;
+  left: 35%;
+  -webkit-animation-iteration-count:infinite;
+  -webkit-animation-timing-function:linear;
+  -webkit-animation-name:orbit;
+  -webkit-animation-duration:3s;
+}
+
+@-webkit-keyframes orbit {
+from { -webkit-transform:rotate(0deg) }
+to { -webkit-transform:rotate(360deg) }
+
+}
+
+.tilt {
+  transform: rotate(30deg);
 }
 
 

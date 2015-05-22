@@ -67,7 +67,7 @@ var DogDancer = function(top, left, timeBetweenSteps){
   if (!this.ghost) {
     this.$node = $('<img src="dog.png" class="DogDancer">');
   } else {
-    this.$node = $('<img src="ghost.png" class="GhostDancer">');
+    this.$node = $('<img src="ghost.png" class="DogDancer">');
   }
   this.setPosition(this.top, this.left);
   this.type = 'dog';
@@ -101,7 +101,7 @@ var CrabDancer = function(top, left, timeBetweenSteps){
   if(!this.ghost){
     this.$node = $('<img src="crab.png" class="CrabDancer">');
   } else {
-    this.$node = $('<img src="ghost.png" class="GhostDancer">');
+    this.$node = $('<img src="ghost.png" class="CrabDancer">');
   }
   this.setPosition(this.top, this.left);
   this.type = 'crab';
@@ -135,7 +135,7 @@ var SharkDancer = function(top, left, timeBetweenSteps){
   if (!this.ghost){
     this.$node = $('<img src="shark.png" class="SharkDancer">');
   } else {
-    this.$node = $('<img src="ghost.png" class="GhostDancer">');
+    this.$node = $('<img src="ghost.png" class="SharkDancer">');
   }
   this.setPosition(this.top, this.left);
   this.type = 'shark';
@@ -169,7 +169,7 @@ var FishDancer = function(top, left, timeBetweenSteps){
   if (!this.ghost){
     this.$node = $('<img src="fish.png" class="FishDancer">');
   } else {
-    this.$node = $('<img src="ghost.png" class="GhostDancer">');
+    this.$node = $('<img src="ghost.png" class="FishDancer">');
   }
   this.setPosition(this.top, this.left);
   this.type = 'fish';
